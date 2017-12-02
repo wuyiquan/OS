@@ -55,7 +55,6 @@ void *carN(void *arg)
 	while (cP->numInDir != northCar)
 		pthread_cond_wait(&condQueueNorth, &mutexQueueNorth);
 
-	
 	//Arrives
 	pthread_mutex_lock(&mutexNorthState);
 	printf("car %d from North arrives at crossing\n", cP->numInAll);
@@ -72,15 +71,10 @@ void *carN(void *arg)
 	//Pass
 	pthread_mutex_lock(&C);
 	pthread_mutex_lock(&D);
-	//sleep(1);
 	pthread_mutex_unlock(&mutexWestState);
 	//printf("Nhere3 %d.\n", cP->numInAll);
 	//Left
-	
-	//printf("Nhere4 %d.\n", cP->numInAll);
-	//printf("Nhere5 %d.\n", cP->numInAll);
 	pthread_mutex_lock(&mutexFirstEast);
-	//printf("Nhere6 %d.\n", cP->numInAll);
 	northState = 0;
 	northCar++;
 	pthread_cond_signal(&condFirstEast);
